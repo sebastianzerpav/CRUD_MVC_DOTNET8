@@ -1,0 +1,114 @@
+﻿@model IEnumerable<CRUD_DOTNET8_MVC.Models.Contacto>
+@{
+    ViewData["Title"] = "Lista de contactos";
+}
+
+<h1 class="text-center">Directorio de contactos con .NET 8 MVC</h1>
+<div class="row">
+    <div class="offset-9 col-3 mb-3">
+        <a asp-action="Crear" asp-asp-controller="Inicio" class="btn btn-secondary d-block mx-auto btn-lg">
+            <i class="bi bi-file-plus-fill"></i>Nuevo usuario
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="offset-12">
+        <div class="card border">
+            <div class="card-header bg-dark">
+                <h3 class="text-white"><strong>Lista de usuarios</strong></h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    @if (Model.Count() > 0)
+                    {
+                        <table class="table table-bordered" id="tblUsuarios" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(m => m.id)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(m => m.nombre)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(m => m.celular)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(m => m.correo)
+                                    </th>
+                                    <th>
+                                        Acciones
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(m => item.id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.nombre)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.celular)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.correo)
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-warning" asp-action="Editar" asp-route-id="@item.id">
+                                                <i class="bi bi-pencil"></i>Editar
+                                            </a>
+                                            <a class="btn btn-secondary" asp-action="Detalle" asp-route-id="@item.id">
+                                                <i class="bi bi-info-circle-fill"></i>Detalle
+                                            </a>
+                                            <a class="btn btn-danger" asp-action="Borrar" asp-route-id="@item.id">
+                                                <i class="bi bi-eraser-fill"></i>Borrar
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p>No hay registros</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#tblUsuarios').DataTable({
+                lenguage: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando ... ",
+                    "processing": "Procesando ...",
+                    "search": "Buscar: ",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+}

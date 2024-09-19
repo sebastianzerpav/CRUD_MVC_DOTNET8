@@ -1,0 +1,52 @@
+﻿@model CRUD_DOTNET8_MVC.Models.Contacto
+@{
+    ViewData["Title"] = "Editar contacto";
+}
+
+<h1 class="text-center">Directorio de contactos con .NET 8 MVC</h1>
+
+<div class="row">
+    <div class="offset-12">
+        <div class="card border">
+            <div class="card-header bg-dark">
+                <h3 class="text-white"><strong>Editar usuario</strong></h3>
+            </div>
+            <div class="card-body">
+                <form asp-action="Editar" method="post">
+
+                    <input type="hidden" asp-for="id"/>
+
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="nombre" class="control-label"></label>
+                        <input asp-for="nombre" class="form-control" placeholder="Ingresa el nombre" />
+                        <span asp-validation-for="nombre" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="celular" class="control-label"></label>
+                        <input asp-for="celular" class="form-control" placeholder="Ingresa el celular" />
+                        <span asp-validation-for="celular" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="correo" class="control-label"></label>
+                        <input asp-for="correo" class="form-control" placeholder="Ingresa el correo" />
+                        <span asp-validation-for="correo" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <button type="submit" class="btn btn-primary d-block mx-auto">
+                            <i class="bi bi-pencil-fill"></i>Editar usuario
+                        </button>
+                    </div>
+
+                </form>
+
+                <a asp-controller="Inicio" asp-action="Index">Volver</a>
+
+            </div>
+        </div>
+    </div>
+</div>
